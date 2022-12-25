@@ -21,7 +21,6 @@ from django.views.generic import TemplateView
 from uploadDocuments import views
 
 urlpatterns = [
-    path('uploadDocuments/', views.form_upload, name="uploadDocuments"),
     path('admin/', admin.site.urls),
     path("accounts/", include('accounts.urls')),
     path('accounts/', include("django.contrib.auth.urls")),

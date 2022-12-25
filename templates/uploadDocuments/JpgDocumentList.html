@@ -2,10 +2,7 @@
 
 
 {% block content %}
-    {% block title %}Images{% endblock %}
-    <p>
-    <a href="{% url 'uploadPdf' %}" class="btn btn-primary">Upload Images</a>
-    </p>
+    {% block title %}<h1>Images</h1>{% endblock %}
     {% if user.is_authenticated %}
         <table class="table">
             <thead>
@@ -19,7 +16,7 @@
                     {% if user == image.owner %}
                     <tr>
                         <td>
-                            <a href="{{ image.image }}" target="_blank">{{ image.image }}</a>
+                            <img src="{{ image.image.url }}" alt="Image" width="400" height="400"/>
                         </td>
                         <td>
                             {{ image.text }}
@@ -30,7 +27,6 @@
             </tbody>
 
         </table>
-        <p><a href="{% url 'home' %}">Return to home</a></p>
     {% else %}
         <p>You are not logged in.</p>
         <a href="{% url 'login' %}">Log In<br/></a>

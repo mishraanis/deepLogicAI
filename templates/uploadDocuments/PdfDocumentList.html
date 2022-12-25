@@ -2,10 +2,7 @@
 
 
 {% block content %}
-    {% block title %}PDFs{% endblock %}
-    <p>
-    <a href="{% url 'uploadPdf' %}" class="btn btn-primary">Upload PDF</a>
-    </p>
+    {% block title %}<h2>PDFs</h2>{% endblock %}
     {% if user.is_authenticated %}
         <table class="table">
             <thead>
@@ -19,7 +16,7 @@
                     {% if user == pdf.owner %}
                         <tr>
                             <td>
-                                <a href="{{ pdf.file }}" target="_blank">{{ pdf.file }}</a>
+                                <a href="{{ pdf.file.url }}" target="_blank">{{ pdf.file.url }}</a>
                             </td>
                             <td>
                                 {{ pdf.text }}
@@ -30,7 +27,6 @@
             </tbody>
 
         </table>
-        <p><a href="{% url 'home' %}">Return to home</a></p>
     {% else %}
         <p>You are not logged in</p>
         <a href="{% url 'login' %}">Log In<br/></a>

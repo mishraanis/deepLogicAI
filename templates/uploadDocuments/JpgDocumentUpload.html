@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% block title %}Image Upload{% endblock %}
+    {% block title %}<h1>Image Upload</h1>{% endblock %}
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
         {{ form.image }}
@@ -10,5 +10,4 @@
     {%  if url %}
     <p> Uploaded Image: <a href="{{ url }}">{{ url }}</a></p>
     {% endif %}
-    <p><a href="{% url 'home' %}">Return to home</a></p>
 {% endblock %}

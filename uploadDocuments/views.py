@@ -6,15 +6,6 @@ import PyPDF2
 from pytesseract import pytesseract
 from PIL import Image
 
-def form_upload(request):
-    context = {}
-    if request.method == 'POST':
-        form = request.FILES['document']  # DocumentForm(request.POST, request.FILES)
-        fs = FileSystemStorage()
-        name = fs.save(form.name, form)
-        context['url'] = fs.url(name)
-    return render(request, "../templates/uploadDocuments/upload.html", context)
-
 
 def pdfDocumentList(request):
     documents = PdfDocument.objects.all()

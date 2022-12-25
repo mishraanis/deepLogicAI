@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% block title %}PDF Upload{% endblock %}
+    {% block title %}<h2>PDF Upload</h2>{% endblock %}
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
         {{ form.file }}
@@ -10,5 +10,4 @@
     {%  if url %}
     <p> Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
     {% endif %}
-    <p><a href="{% url 'home' %}">Return to home</a></p>
 {% endblock %}

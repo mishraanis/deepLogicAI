@@ -1,19 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
-
 {% block content %}
-{% if user.is_authenticated %}
-  Hi {{ user.username }}!
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
-    <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
-    <p><a href="{% url 'uploadPdf' %}">Upload PDF</a></p>
-    <p><a href="{% url 'pdfs_list' %}">Show uploaded PDF</a></p>
-    <p><a href="{% url 'uploadJPG' %} ">Upload Image</a></p>
-    <p><a href="{% url 'jpgs_list' %} ">Show uploaded Images</a></p>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In<br/></a>
-    <a href="{% url 'signup' %}">Register</a>
-{% endif %}
+    {% block title %}<h1>Home</h1>{% endblock %}
+    {% if user.is_authenticated %}
+        <h2 class="card-title">Hi {{ user.username }}!</h2>
+        <p>Welcome to a simple PDF and Image upload and text extraction tutorial</p>
+        <p>I have used PostgreSQL to store the documents and the extracted text</p>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In<br/></a>
+        <a href="{% url 'signup' %}">Register</a>
+    {% endif %}
 {% endblock %}
