@@ -6,22 +6,34 @@
     <p>
     <a href="{% url 'uploadPdf' %}" class="btn btn-primary">Upload Images</a>
     </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Image link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for image in images %}
+    {% if user.is_authenticated %}
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        <a href="{{ image.image.url }}" target="_blank">{{ image.image.url }}</a>
-                    </td>
+                    <th>Image link</th>
+                    <th>Image text content</th>
                 </tr>
-            {% endfor %}
-        </tbody>
+            </thead>
+            <tbody>
+                {% for image in images %}
+                    {% if user == image.owner %}
+                    <tr>
+                        <td>
+                            <a href="{{ image.image }}" target="_blank">{{ image.image }}</a>
+                        </td>
+                        <td>
+                            {{ image.text }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
 
-    </table>
-    <p><a href="{% url 'home' %}">Return to home</a></p>
+        </table>
+        <p><a href="{% url 'home' %}">Return to home</a></p>
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Log In<br/></a>
+        <a href="{% url 'signup' %}">Register</a>
+    {% endif %}
 {% endblock %}
