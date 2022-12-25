@@ -7,6 +7,7 @@ class DocumentForm(forms.ModelForm):
         model = PdfDocument
         fields = 'file', 'owner', 'text'
 
+
 class JpgDocumentForm(forms.ModelForm):
     class Meta:
         model = JpgDocument

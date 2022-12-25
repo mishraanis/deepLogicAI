@@ -58,14 +58,15 @@ def jpgDocumentUpload(request):
     if request.method == 'POST':
         form = JpgDocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            document = form.save()
-            img = Image.open(document.image)
+            image = form.save()
+            img = Image.open(image.image)
             path_to_tesseract = r"C:\Users\mishr\AppData\Local\Programs\Tesseract-OCR\tesseract.exe"
             pytesseract.tesseract_cmd = path_to_tesseract
             text = pytesseract.image_to_string(img)
-            document.text = text
-            document.owner = request.user
-            document.save()
+            img.close()
+            image.text = text
+            image.owner = request.user
+            image.save()
             return redirect('jpgs_list')
     else:
         form = JpgDocumentForm()
