@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% block title %}PDFs{% endblock %}
+    <p>
+    <a href="{% url 'uploadPdf' %}" class="btn btn-primary">Upload PDF</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>PDF link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pdf in pdfs %}
+                <tr>
+                    <td>
+                        <a href="{{ pdf.file.url }}" target="_blank">{{ pdf.file.url }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <p><a href="{% url 'home' %}">Return to home</a></p>
+{% endblock %}

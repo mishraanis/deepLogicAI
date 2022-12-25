@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% block title %}Images{% endblock %}
+    <p>
+    <a href="{% url 'uploadPdf' %}" class="btn btn-primary">Upload Images</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for image in images %}
+                <tr>
+                    <td>
+                        <a href="{{ image.image.url }}" target="_blank">{{ image.image.url }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <p><a href="{% url 'home' %}">Return to home</a></p>
+{% endblock %}
